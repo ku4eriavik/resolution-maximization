@@ -3,6 +3,7 @@ from json import load
 from pathlib import Path
 
 from surface import Surface
+from camera import Camera
 
 
 def create_surface_from_config(config_path: Path):
@@ -28,3 +29,17 @@ def create_region_from_config(config_path: Path):
         assert y_range is not None, 'Parameter y_range has to be set.'
 
         return x_range, y_range
+
+
+def create_camera_from_config(config_path: Path):
+    assert config_path.exists(), f'Camera C config file {str(config_path)} does not exist.'
+
+    with open(str(config_path), 'r') as json_file:
+        data = load(json_file)
+        fov_deg = data.get('fov_deg', None)
+        res_pix = data.get('res_pix', None)
+        assert fov_deg is not None, 'Parameter fov_deg has to be set.'
+        assert res_pix is not None, 'Parameter res_pix has to be set.'
+
+        camera = Camera(fov_rad=np.deg2rad(fov_deg), res_pix=res_pix)
+        return camera

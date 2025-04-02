@@ -43,3 +43,11 @@ def create_camera_from_config(config_path: Path):
 
         camera = Camera(fov_rad=np.deg2rad(fov_deg), res_pix=res_pix)
         return camera
+
+
+def load_algorithm_config(config_path: Path):
+    assert config_path.exists(), f'Algorithm config file {str(config_path)} does not exist.'
+
+    with open(str(config_path), 'r') as json_file:
+        config = load(json_file)
+        return config

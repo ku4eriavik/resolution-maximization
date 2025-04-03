@@ -1,0 +1,11 @@
+{
+  "amount_generations": 50,
+  "minimal_distance": 3.0,
+  "use_soft_penalty": false,
+  "penalty_weight": 1000.0,
+  "approximation_count": 5,
+  "size_population": 200,
+  "size_elite": 50,
+  "size_plebs": 100,
+  "error_rate": 1e-3
+}

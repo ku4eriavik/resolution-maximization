@@ -36,13 +36,14 @@ if __name__ == '__main__':
     # x_cameras = [2.5, 9.0, 5.5]
     # x_cameras = [5.626387, 9.151186, 2.7728794]
     # x_cameras = [2.7728794, 5.626387, 9.151186]
-    x_cameras = [2.7728794, 9.151186, 5.626387]     # opt for soft 200
+    # x_cameras = [2.7728794, 9.151186, 5.626387]     # opt for soft 200
     # x_cameras = [2.7783203, 9.128904, 5.6331797]    # opt for soft 100
 
-    # x_cameras = [6.207, 2.974, 9.213]
-    # x_cameras = [9.265, 2.853, 6.408]
-    # x_cameras = [2.778, 9.129, 5.633]
-    # x_cameras = [2.773, 9.151, 5.626]
+    # used in paper
+    x_cameras = [6.207, 2.974, 9.213]     # Experiment I
+    # x_cameras = [9.265, 2.853, 6.408]     # Experiment II
+    # x_cameras = [2.778, 9.129, 5.633]     # Experiment III
+    # x_cameras = [2.773, 9.151, 5.626]     # Experiment IV
 
     y_cameras = surface.get_function_values(x_cameras)
     n_cameras = surface.normal_at_point(x_cameras)
@@ -128,6 +129,12 @@ if __name__ == '__main__':
             poly = Polygon(xy=cropped_points, facecolor='green', edgecolor='black', alpha=0.5)
             ax.add_patch(poly)
 
-    ax.legend()
+    font_size = 14
+    ax.legend(fontsize=font_size)
     ax.set_aspect('equal')
+    ax.set_xlabel('X coordinate', fontsize=font_size)
+    ax.set_ylabel('Y coordinate', fontsize=font_size)
+    ax.tick_params(axis='both', labelsize=font_size)
+    ax.set_xlim(d_region[0][0] - 0.5, d_region[0][1] + 0.5)
+    ax.set_ylim(d_region[1][0] - 0.5, d_region[1][1] + 0.5)
     plt.show()
